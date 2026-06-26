@@ -49,7 +49,7 @@ body::after{
 /* ========== HEADER ========== */
 header{
   position:relative;z-index:2;width:100%;
-  padding:2rem 1rem 1rem;text-align:center;
+  padding:2rem 1rem 0.6rem;text-align:center;
 }
 header h1{
   font-size:clamp(1.6rem,4vw,2.8rem);
@@ -64,8 +64,33 @@ header .sub{
   color:rgba(180,165,140,0.5);letter-spacing:0.3em;
 }
 
+/* ========== STYLE TABS ========== */
+.style-tabs{
+  position:relative;z-index:2;
+  display:flex;gap:0.3rem;justify-content:center;flex-wrap:wrap;
+  padding:0.8rem 1rem 0.3rem;
+}
+.style-tab{
+  padding:0.4rem 0.9rem;
+  background:rgba(30,20,10,0.5);
+  border:1px solid rgba(200,170,130,0.12);
+  border-radius:2px;
+  color:rgba(180,165,140,0.5);
+  font-size:0.75rem;font-family:inherit;letter-spacing:0.1em;
+  cursor:pointer;transition:all .3s;
+}
+.style-tab:hover{
+  border-color:rgba(200,170,130,0.25);
+  color:rgba(200,180,160,0.7);
+}
+.style-tab.active{
+  background:rgba(60,35,20,0.4);
+  border-color:rgba(180,100,50,0.35);
+  color:#c8b090;
+}
+
 /* ========== MAIN CARD ========== */
-main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;padding:1.5rem 1rem 2rem}
+main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;padding:0.6rem 1rem 1.5rem}
 
 /* ========== PAPER CONTAINER ========== */
 .paper-wrapper{
@@ -80,7 +105,7 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align
   background:linear-gradient(170deg, #f5efe0 0%, #ede3cf 40%, #e6dcc5 60%, #f0e6d2 100%);
   border-radius:2px;
   padding:2.8rem 2.2rem 2.2rem;
-  min-height:420px;
+  min-height:400px;
   display:flex;flex-direction:column;
   box-shadow:inset 0 0 30px rgba(160,130,90,0.1);
   transition:opacity .35s, transform .35s;
@@ -111,11 +136,21 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align
   letter-spacing:0.1em;
 }
 
+/* ========== STYLE BADGE ========== */
+.style-badge{
+  position:absolute;top:-10px;right:20px;z-index:3;
+  font-size:0.6rem;letter-spacing:0.15em;
+  color:rgba(100,70,50,0.4);
+  background:rgba(200,180,155,0.3);
+  padding:0.15rem 0.6rem;
+  border-radius:1px;
+}
+
 /* ========== INSTRUCTION CONTENT ========== */
 .instruction-content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column}
 
 .instruction-header{
-  text-align:center;margin-bottom:1.4rem;
+  text-align:center;margin-bottom:1.2rem;
   font-size:clamp(1rem,2.5vw,1.3rem);
   font-weight:700;color:#3a2a1a;
   letter-spacing:0.5em;
@@ -136,8 +171,48 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align
   margin-bottom:0.8rem;
   text-indent:2em;
 }
-.instruction-body .highlight{
-  color:#7a3020;font-weight:700;
+
+/* Short style */
+.instruction-body.short-style{
+  text-align:center;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  padding:0.8rem 0.5rem;
+}
+.instruction-body.short-style .short-line{
+  font-size:clamp(1.3rem,3.5vw,1.8rem);
+  font-weight:700;color:#3a2a1a;letter-spacing:0.4em;
+  line-height:1.8;text-indent:0;margin-bottom:0.3rem;
+}
+.instruction-body.short-style .short-sub{
+  font-size:clamp(0.75rem,1.8vw,0.9rem);
+  color:#7a6050;letter-spacing:0.2em;
+  margin-top:0.4rem;text-indent:0;line-height:1.6;
+}
+
+/* List style */
+.instruction-body.list-style .list-item{
+  display:flex;gap:0.6rem;align-items:flex-start;
+  margin-bottom:0.5rem;text-indent:0;
+}
+.instruction-body.list-style .list-num{
+  color:#7a3020;font-weight:700;flex-shrink:0;
+  min-width:1.4rem;text-align:right;
+}
+
+/* Triple style */
+.instruction-body.triple-style{
+  display:flex;flex-direction:column;justify-content:center;gap:0.3rem;
+}
+.instruction-body.triple-style .triple-line{
+  text-align:center;text-indent:0;
+  font-size:clamp(1rem,2.4vw,1.2rem);
+  letter-spacing:0.3em;color:#4a3a2a;
+  padding:0.3rem 0;
+  border-bottom:1px dashed rgba(60,40,20,0.08);
+}
+.instruction-body.triple-style .triple-line:last-child{border-bottom:none}
+.instruction-body.triple-style .triple-line .triple-mark{
+  font-size:0.7rem;color:#9a8068;display:block;margin-top:0.1rem;
 }
 
 .instruction-footer{
@@ -160,7 +235,7 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align
 
 /* ========== CONTROLS ========== */
 .controls{
-  margin-top:2.2rem;display:flex;gap:1rem;justify-content:center;
+  margin-top:1.5rem;display:flex;gap:0.8rem;justify-content:center;
   flex-wrap:wrap;
 }
 .btn{
@@ -190,7 +265,7 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align
 
 /* ========== COUNTER ========== */
 .counter{
-  margin-top:1rem;font-size:0.75rem;color:rgba(180,165,140,0.35);
+  margin-top:0.8rem;font-size:0.75rem;color:rgba(180,165,140,0.35);
   letter-spacing:0.05em;
   text-align:center;
 }
@@ -204,9 +279,10 @@ footer{
 
 /* ========== RESPONSIVE ========== */
 @media(max-width:480px){
-  .paper{padding:2rem 1.2rem 1.5rem;min-height:360px}
+  .paper{padding:2rem 1.2rem 1.5rem;min-height:350px}
   .instruction-body{font-size:0.95rem;line-height:1.9}
   .btn{padding:0.6rem 1.4rem;font-size:0.8rem}
+  .style-tab{padding:0.3rem 0.6rem;font-size:0.7rem}
 }
 
 /* ========== SCROLLBAR ========== */
@@ -224,10 +300,20 @@ footer{
   <div class="sub">— 食 指 · 都 市 之 令 —</div>
 </header>
 
+<div class="style-tabs" id="styleTabs">
+  <button class="style-tab active" data-style="standard">标准令</button>
+  <button class="style-tab" data-style="short">短令</button>
+  <button class="style-tab" data-style="list">列表令</button>
+  <button class="style-tab" data-style="triple">三行令</button>
+  <button class="style-tab" data-style="omen">谶言令</button>
+  <button class="style-tab" data-style="mixed">混令</button>
+</div>
+
 <main>
   <div class="paper-wrapper">
     <div class="paper" id="paper">
       <div class="seal-top">食</div>
+      <div class="style-badge" id="styleBadge">— 标准令 —</div>
       <div class="instruction-content" id="instruction">
         <!-- generated by JS -->
       </div>
@@ -245,90 +331,199 @@ footer{
 
 <script>
 // ============================================================
-//  INGREDIENTS – 部件库，可组合出上万种不同指令
+//  INGREDIENTS – 部件库
 // ============================================================
 
 const OPENINGS = [
-  '谨遵指令之意：',
-  '食指之令已至：',
-  '信纸所示，不可违逆：',
-  '意志既定，遵从便是：',
-  '今有指令如下：',
-  '奉行意志：',
-  '信之所至：',
+  '谨遵指令之意：','食指之令已至：','信纸所示，不可违逆：',
+  '意志既定，遵从便是：','今有指令如下：','奉行意志：',
+  '信之所至：','指令已降：','切勿犹豫：',
 ];
 
 const ACTIONS = [
-  '前往', '交付', '寻找', '携带', '守护',
-  '摧毁', '收集', '拜访', '传递', '清除',
-  '献上', '点燃', '掩埋', '悬挂', '投掷',
+  '前往','交付','寻找','携带','守护',
+  '摧毁','收集','拜访','传递','清除',
+  '献上','点燃','掩埋','悬挂','投掷',
+  '遗弃','封存','割让','供奉','浸泡',
 ];
 
 const TARGETS = [
-  '三枚染血的硬币', '七根未燃的白烛', '一封无字的信函',
-  '一束枯萎的蓝花', '一面破碎的银镜', '一块染墨的白布',
-  '一把生锈的铁匙', '三片漆黑的鸦羽', '一本空心的古书',
-  '一枚铜铸的铃铛', '一双沾泥的皮靴', '一叠写满字的纸片',
-  '一条断开的银链', '半截烧残的蜡烛', '一枝带刺的黑玫瑰',
-  '一只独眼的瓷猫', '一块刻字的骨牌', '一枚泛黄的旧照',
-  '一个密封的陶罐', '一卷泛霉的绷带',
+  '三枚染血的硬币','七根未燃的白烛','一封无字的信函',
+  '一束枯萎的蓝花','一面破碎的银镜','一块染墨的白布',
+  '一把生锈的铁匙','三片漆黑的鸦羽','一本空心的古书',
+  '一枚铜铸的铃铛','一双沾泥的皮靴','一叠写满字的纸片',
+  '一条断开的银链','半截烧残的蜡烛','一枝带刺的黑玫瑰',
+  '一只独眼的瓷猫','一块刻字的骨牌','一枚泛黄的旧照',
+  '一个密封的陶罐','一卷泛霉的绷带','一只失声的八音盒',
+  '一页撕下的日记','一撮灰白的发丝','一枚生锈的胸针',
+  '一只干枯的眼球','一副断齿的骨梳','半张烧焦的地图',
 ];
 
 const PERSONS = [
-  '穿红大衣的老者', '独眼的卖花女童', '断指的铁匠',
-  '蒙面的夜巡人', '跛脚的邮差', '沉默的白袍修女',
-  '戴鸟面面具的人', '缺牙的巷口乞丐', '满臂纹身的醉汉',
-  '缠绷带的怪医', '提灯笼的盲眼少年', '扛棺的驼背人',
-  '戴单片眼镜的绅士', '披破斗篷的瘦高人影',
+  '穿红大衣的老者','独眼的卖花女童','断指的铁匠',
+  '蒙面的夜巡人','跛脚的邮差','沉默的白袍修女',
+  '戴鸟面面具的人','缺牙的巷口乞丐','满臂纹身的醉汉',
+  '缠绷带的怪医','提灯笼的盲眼少年','扛棺的驼背人',
+  '戴单片眼镜的绅士','披破斗篷的瘦高人影','倒骑扫帚的疯婆子',
+  '浑身铁锈的机械师','戴纸冠的流浪艺人','捂嘴笑的小孩',
 ];
 
 const LOCATIONS = [
-  'K巢第七后巷的旧铁桥下', 'L巢西南区废弃缆车站',
-  '八号巷"音之巷"的废弃剧场', '二十三号巷"味之巷"第三岔口',
-  'W公司裂口站的月台尽头', 'M公司月长石诊所后院',
-  'N公司自贩机广场东南角', 'T公司褪色区钟楼废墟',
-  'U公司大湖码头废弃货舱', 'R公司第五征兵站旧址',
-  'L巢应试村南侧枯井旁', 'T巢与K巢交界的高架桥洞',
-  'Cinq协会南部别馆地下', 'Zwei协会北部第七哨站废墟',
-  'S公司肉血骨工厂三号烟囱底部',
+  'K巢第七后巷的旧铁桥下','L巢西南区废弃缆车站',
+  '八号巷"音之巷"的废弃剧场','二十三号巷"味之巷"第三岔口',
+  'W公司裂口站的月台尽头','M公司月长石诊所后院',
+  'N公司自贩机广场东南角','T公司褪色区钟楼废墟',
+  'U公司大湖码头废弃货舱','R公司第五征兵站旧址',
+  'L巢应试村南侧枯井旁','T巢与K巢交界的高架桥洞',
+  'Cinq协会南部别馆地下','Zwei协会北部第七哨站废墟',
+  'S公司肉血骨工厂三号烟囱底部','G公司重力球观测塔基座',
+  '食指传令室旧址的地下三层','Dieci协会西部书库第四密室',
 ];
 
 const TIMES = [
-  '今晚深宵之前', '明早日出之时', '三日之内',
-  '下一个月圆之夜', '七声钟响之内', '日落之前',
-  '清道夫出动以前', '下一轮深宵到来前',
-  '三日后凌晨三点十三分', '七日后的正午',
+  '今晚深宵之前','明早日出之时','三日之内',
+  '下一个月圆之夜','七声钟响之内','日落之前',
+  '清道夫出动以前','下一轮深宵到来前',
+  '三日后凌晨三点十三分','七日后的正午',
+  '本季结束之前','下次满月升起时',
+  '在下一场雨落下之前','在烟霾散去之前',
 ];
 
 const CONDITIONS = [
-  '不得被人察觉', '不得与他人交谈', '不得留下任何痕迹',
-  '必须独自完成', '不得使用任何奇点制品',
-  '全程不可点灯', '不可回头张望', '需赤足而行',
-  '需蒙眼前往', '需以左手行事',
+  '不得被人察觉','不得与他人交谈','不得留下任何痕迹',
+  '必须独自完成','不得使用任何奇点制品',
+  '全程不可点灯','不可回头张望','需赤足而行',
+  '需蒙眼前往','需以左手行事','需闭口不言至终',
+  '不得携带任何武器','需逆时针绕行三周',
 ];
 
 const CONSEQUENCES = [
-  '违者将化为"材料"', '违者将录入名录，永世追索',
-  '违者将失去居住之权', '违者将受"清道夫"问候',
-  '违者之姓名将从都市中抹去', '违者将被逐出后巷，流放郊区',
-  '违者之血将被献于意志', '违者将永失食指庇护',
+  '违者将化为"材料"','违者将录入名录，永世追索',
+  '违者将失去居住之权','违者将受"清道夫"问候',
+  '违者之姓名将从都市中抹去','违者将被逐出后巷，流放郊区',
+  '违者之血将被献于意志','违者将永失食指庇护',
+  '违者将被自记忆中删除','违者将承受七轮深宵之刑',
 ];
 
 const CLOSINGS = [
-  '——遵行即安，违者无赦。',
-  '——信在人在，信失人亡。',
-  '——意志既降，莫问缘由。',
-  '——此令既出，天地共鉴。',
-  '——食指引以为证。',
+  '——遵行即安，违者无赦。','——信在人在，信失人亡。',
+  '——意志既降，莫问缘由。','——此令既出，天地共鉴。',
+  '——食指引以为证。','——意志已然织就。',
 ];
 
 // ============================================================
-//  GENERATOR
+//  SHORT STYLE – 短令 / prescript 风格
+// ============================================================
+
+const SHORT_MAIN = [
+  '指令是投注','指令是遗忘','指令是沉默','指令是等待',
+  '指令是献祭','指令是归还','指令是掩埋','指令是注视',
+  '指令是告别','指令是偿还','指令是了断','指令是开端',
+  '指令是选择','指令是放弃','指令是铭记','指令是消失',
+  '指令是门槛','指令是契约','指令是回声','指令是信物',
+  '指令是代价','指令是路径','指令是缺口','指令是重力',
+];
+
+const SHORT_DETAIL = [
+  '投下便不可收回','忘记才是最深的忠诚',
+  '沉默本身就是回答','等来的未必是你想要的',
+  '献上的终将回到你身边','归还意味着真正的拥有',
+  '埋下的从来不会消失','你看见它的时候它也在看你',
+  '告别已经开始','偿还的利息比本金更重',
+  '了断只是另一种延续','开端之中已藏着结局',
+  '选择即是放弃','放弃的才是真正属于你的',
+  '忘记在记忆中最清晰','消失是最彻底的在场',
+  '跨过之后便不能回头','签下之前请看清细则',
+  '回声终将找到发声者','信物从不属于持有者',
+  '代价一定会在你最需要的时候收取','走上便不能中途停下',
+  '缺口从不愈合','反抗只会让你坠落得更快',
+];
+
+// ============================================================
+//  OMEN STYLE – 谶言 / 预言式
+// ============================================================
+
+const OMENS = [
+  '七日之后，你所守护的将反过来吞噬你。',
+  '当你在镜中看见第二个自己时，不要眨眼——因为眨眼的那个不是你。',
+  '你收到的第二封信会改写第一封信的内容。',
+  '今晚深宵，不要数清楼梯的级数。',
+  '在下一个满月之前，你欠下的债会以你无法辨认的形式归来。',
+  '如果你在凌晨三点十三分听见三声敲门，不要开门——敲门的不是人。',
+  '你捡到的那枚硬币，花的不是你自己的钱。',
+  '当你读完这句话，城中某处的灯会熄灭。',
+  '不要回头看那个你帮助过的人——他已经不记得你了。',
+  '你将要走的那条路，在你到达之前就已经被抹去了。',
+  '在下一次雨停之前，做出一个无法反悔的决定。',
+  '你会在一个意想不到的地方认出自己。',
+  '当你终于找到入口的时候，里面已经没有你想要的东西了。',
+  '你以为完成了指令——但指令从未结束。',
+];
+
+const OMEN_AFTERS = [
+  '意志织就，无可更改。','信纸既出，便是终局。',
+  '这便是你所选的道路。','静候结局，勿问缘由。',
+];
+
+// ============================================================
+//  LIST STYLE – 列表式多指令
+// ============================================================
+
+const LIST_ACTIONS = [
+  '前往最近的水边，投入一枚硬币，不许看它沉没。',
+  '在日落前向一个陌生人问路，然后朝反方向走。',
+  '收集七片落叶，将它们埋在十字路口的正中央。',
+  '在全黑的房间里点燃一根火柴，在它熄灭前许一个愿。',
+  '找一面镜子，用左手在雾气上写一个数字。',
+  '从一本书的第47页撕下第三段，烧掉它。',
+  '找到一只黑猫，目送它离开，不要回头。',
+  '在纸上写下一个秘密，然后将纸折成船放进水里。',
+  '对着墙壁说出一个名字，然后立即忘记它。',
+  '用红线系住一根无名指，保持整整一天。',
+  '在凌晨四点整睁开眼，静坐至天明。',
+  '将一把盐撒在门槛外，三天内不要清扫。',
+  '找到一座桥，从桥下走而不是桥上。',
+  '对着空椅子说话，直到你感觉到有人在听。',
+  '将你的影子画下来，然后将画作烧掉。',
+  '戴上一只不属于你的手套，走一公里。',
+  '在钟声敲响时停下脚步，直到它完全停止。',
+  '将一块石头放在路中央，不要告诉任何人为什么。',
+];
+
+// ============================================================
+//  TRIPLE STYLE – 三行令
+// ============================================================
+
+// Triple templates: [line1, line2, line3, marks]
+const TRIPLE_TEMPLATES = [
+  { l1:'第一，去你从未去过的地方', l2:'第二，带回你从未拥有的东西', l3:'第三，成为你不曾想过的人', m1:'— 行 —', m2:'— 知 —', m3:'— 成 —' },
+  { l1:'你所寻找的就在你身后', l2:'你所害怕的正在靠近', l3:'你所等待的永远不会来', m1:'— 寻 —', m2:'— 惧 —', m3:'— 等 —' },
+  { l1:'闭上眼，看清面前的黑暗', l2:'张开手，握住虚空中的重量', l3:'迈开步，走进想象中的大门', m1:'— 见 —', m2:'— 触 —', m3:'— 入 —' },
+  { l1:'在沉默中听见指令', l2:'在黑暗中看清道路', l3:'在孤独中完成使命', m1:'— 听 —', m2:'— 视 —', m3:'— 行 —' },
+  { l1:'忘掉你来时的路', l2:'记住你路上的标记', l3:'忘记你看到的所有标记', m1:'— 忘 —', m2:'— 记 —', m3:'— 再忘 —' },
+  { l1:'向东方走七步，停下', l2:'向西方走七步，跪下', l3:'向北方走七步，别停', m1:'— 东 —', m2:'— 西 —', m3:'— 北 —' },
+];
+
+// ============================================================
+//  STYLE NAMES
+// ============================================================
+
+const STYLE_LABELS = {
+  standard:'标准令', short:'短令', list:'列表令',
+  triple:'三行令', omen:'谶言令', mixed:'混令',
+};
+
+// ============================================================
+//  HELPERS
 // ============================================================
 
 function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
 
-function generateIndex(){
+// ============================================================
+//  GENERATORS PER STYLE
+// ============================================================
+
+function genStandard(){
   const o    = pick(OPENINGS);
   const act  = pick(ACTIONS);
   const tgt  = pick(TARGETS);
@@ -338,44 +533,110 @@ function generateIndex(){
   const cond = pick(CONDITIONS);
   const cons = pick(CONSEQUENCES);
   const clos = pick(CLOSINGS);
+  const v = Math.random();
 
-  // 随机决定这条指令的结构：3 种句式
-  const variant = Math.random();
-  let para1, para2, para3;
-
-  if(variant < 0.33){
-    // 句式A：前往某处做某事
-    para1 = `${o}${act}${loc}，向${per}索取${tgt}。`;
-    para2 = `${time}前完成，${cond}。`;
-    para3 = `${cons}。${clos}`;
-  } else if(variant < 0.66){
-    // 句式B：寻找某人/某物并处置
-    para1 = `${o}在${loc}寻找${per}，从其手中取得${tgt}。`;
-    para2 = `限${time}，${cond}。`;
-    para3 = `${cons}。${clos}`;
+  let p1,p2,p3;
+  if(v<0.33){
+    p1 = `${o}${act}${loc}，向${per}索取${tgt}。`;
+    p2 = `${time}前完成，${cond}。`;
+    p3 = `${cons}。${clos}`;
+  } else if(v<0.66){
+    p1 = `${o}在${loc}寻找${per}，从其手中取得${tgt}。`;
+    p2 = `限${time}，${cond}。`;
+    p3 = `${cons}。${clos}`;
   } else {
-    // 句式C：将某物送到某处
-    para1 = `${o}将${tgt}${act}至${loc}，交予${per}。`;
-    para2 = `须在${time}抵达，${cond}。`;
-    para3 = `${cons}。${clos}`;
+    p1 = `${o}将${tgt}${act}至${loc}，交予${per}。`;
+    p2 = `须在${time}抵达，${cond}。`;
+    p3 = `${cons}。${clos}`;
   }
+  return `<div class="instruction-body"><p>${p1}</p><p>${p2}</p><p>${p3}</p></div>`;
+}
 
-  return {para1, para2, para3, clos};
+function genShort(){
+  const main   = pick(SHORT_MAIN);
+  const detail = pick(SHORT_DETAIL);
+  return `<div class="instruction-body short-style">
+    <div class="short-line">${main}</div>
+    <div class="short-sub">${detail}</div>
+  </div>`;
+}
+
+function genList(){
+  const count = 3 + Math.floor(Math.random()*4); // 3-6 items
+  const used = new Set();
+  const items = [];
+  while(items.length < count){
+    const idx = Math.floor(Math.random() * LIST_ACTIONS.length);
+    if(!used.has(idx)){ used.add(idx); items.push(LIST_ACTIONS[idx]) }
+  }
+  const cond = pick(CONDITIONS);
+  const cons = pick(CONSEQUENCES);
+  return `<div class="instruction-body list-style">
+    ${items.map((t,i)=>`<div class="list-item"><span class="list-num">${i+1}.</span><span>${t}</span></div>`).join('')}
+    <p style="margin-top:0.6rem;text-indent:0;font-size:0.85rem;color:#7a6050;">以上令条须同时执行——${cond}。<br>${cons}。</p>
+  </div>`;
+}
+
+function genTriple(){
+  const t = pick(TRIPLE_TEMPLATES);
+  return `<div class="instruction-body triple-style">
+    <div class="triple-line">${t.l1}<span class="triple-mark">${t.m1}</span></div>
+    <div class="triple-line">${t.l2}<span class="triple-mark">${t.m2}</span></div>
+    <div class="triple-line">${t.l3}<span class="triple-mark">${t.m3}</span></div>
+  </div>`;
+}
+
+function genOmen(){
+  const omen = pick(OMENS);
+  const after = pick(OMEN_AFTERS);
+  return `<div class="instruction-body short-style">
+    <div class="short-line" style="font-size:clamp(1.1rem,2.8vw,1.4rem)">${omen}</div>
+    <div class="short-sub" style="margin-top:0.8rem">${after}</div>
+  </div>`;
+}
+
+function genMixed(){
+  // 50% short, 20% standard, 15% triple, 15% omen
+  const r = Math.random();
+  if(r<0.50) return {html:genShort(), style:'short'};
+  if(r<0.70) return {html:genStandard(), style:'standard'};
+  if(r<0.85) return {html:genTriple(), style:'triple'};
+  return {html:genOmen(), style:'omen'};
 }
 
 // ============================================================
 //  RENDER
 // ============================================================
 
-const paper  = document.getElementById('paper');
-const instEl = document.getElementById('instruction');
-const cntEl  = document.getElementById('counter');
-let genCount = 0;
+const paper     = document.getElementById('paper');
+const instEl    = document.getElementById('instruction');
+const cntEl     = document.getElementById('counter');
+const badgeEl   = document.getElementById('styleBadge');
+let genCount    = 0;
+let currentStyle = 'standard';
 
-function renderIndex(){
-  const {para1, para2, para3} = generateIndex();
+function renderIndex(style){
+  style = style || currentStyle;
+  currentStyle = style;
 
-  // fade out
+  let html, label;
+
+  if(style === 'mixed'){
+    const result = genMixed();
+    html = result.html;
+    label = '混令 · ' + STYLE_LABELS[result.style];
+  } else {
+    const generators = {
+      standard: genStandard,
+      short: genShort,
+      list: genList,
+      triple: genTriple,
+      omen: genOmen,
+    };
+    html = generators[style]();
+    label = STYLE_LABELS[style];
+  }
+
   paper.classList.add('fade-out');
 
   setTimeout(()=>{
@@ -384,17 +645,14 @@ function renderIndex(){
         食 指 之 令
         <span class="deco">⋆ 谨遵指令之意 ⋆</span>
       </div>
-      <div class="instruction-body">
-        <p>${para1}</p>
-        <p>${para2}</p>
-        <p>${para3}</p>
-      </div>
+      ${html}
       <div class="instruction-footer">
         <span class="mark">都市历 · 未知年 · 信纸编号 ${String(++genCount).padStart(4,'0')}</span>
         <div class="seal-stamp">食指</div>
       </div>
     `;
-    cntEl.textContent = `已降指令 ${genCount} 道 · 可组合逾万种`;
+    badgeEl.textContent = '— ' + label + ' —';
+    cntEl.textContent = `已降指令 ${genCount} 道 · 六种令式 · 可组合逾万种`;
     paper.classList.remove('fade-out');
   }, 280);
 }
@@ -412,7 +670,6 @@ document.getElementById('copyBtn').addEventListener('click', async ()=>{
     btn.textContent = '✓ 已复录';
     setTimeout(()=>btn.textContent = orig, 1200);
   }catch{
-    // fallback
     const ta = document.createElement('textarea');
     ta.value = text; document.body.appendChild(ta);
     ta.select(); document.execCommand('copy');
@@ -421,10 +678,22 @@ document.getElementById('copyBtn').addEventListener('click', async ()=>{
 });
 
 // ============================================================
+//  STYLE TABS
+// ============================================================
+
+document.querySelectorAll('.style-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.style-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    renderIndex(tab.dataset.style);
+  });
+});
+
+// ============================================================
 //  EVENTS
 // ============================================================
 
-document.getElementById('generateBtn').addEventListener('click', renderIndex);
+document.getElementById('generateBtn').addEventListener('click', ()=>renderIndex());
 document.addEventListener('keydown', e=>{
   if(e.key===' '||e.key==='Space'){e.preventDefault(); renderIndex()}
 });
