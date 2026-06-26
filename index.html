@@ -102,23 +102,25 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align
 
 .paper{
   position:relative;
-  background:linear-gradient(170deg, #f5efe0 0%, #ede3cf 40%, #e6dcc5 60%, #f0e6d2 100%);
-  border-radius:2px;
-  padding:2.8rem 2.2rem 2.2rem;
-  min-height:400px;
+  background:linear-gradient(170deg, #f5efe0 0%, #ede3cf 40%, #e8ddc8 60%, #f0e6d2 100%);
+  border-radius:1px;
+  padding:2.4rem 2rem 1.8rem;
+  min-height:360px;
   display:flex;flex-direction:column;
-  box-shadow:inset 0 0 30px rgba(160,130,90,0.1);
   transition:opacity .35s, transform .35s;
 }
 .paper.fade-out{
   opacity:0;transform:scale(0.97) translateY(6px);
 }
 
-/* Paper edge aging */
+/* Parchment texture overlay */
 .paper::before{
   content:'';position:absolute;inset:0;
-  border-radius:2px;
-  background:linear-gradient(135deg, rgba(120,90,60,0.08) 0%, transparent 30%, transparent 70%, rgba(120,90,60,0.06) 100%);
+  border-radius:1px;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(120,90,60,0.03) 60px, rgba(120,90,60,0.03) 61px),
+    radial-gradient(ellipse 80% 60% at 30% 50%, rgba(160,130,100,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 70% 30%, rgba(100,80,60,0.04) 0%, transparent 60%);
   pointer-events:none;
 }
 
@@ -138,27 +140,16 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align
 
 /* ========== STYLE BADGE ========== */
 .style-badge{
-  position:absolute;top:-10px;right:20px;z-index:3;
+  position:absolute;top:-12px;right:12px;z-index:3;
   font-size:0.6rem;letter-spacing:0.15em;
-  color:rgba(100,70,50,0.4);
-  background:rgba(200,180,155,0.3);
-  padding:0.15rem 0.6rem;
+  color:rgba(100,70,50,0.3);
+  background:rgba(200,180,155,0.15);
+  padding:0.1rem 0.5rem;
   border-radius:1px;
 }
 
 /* ========== INSTRUCTION CONTENT ========== */
 .instruction-content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column}
-
-.instruction-header{
-  text-align:center;margin-bottom:1.2rem;
-  font-size:clamp(1rem,2.5vw,1.3rem);
-  font-weight:700;color:#3a2a1a;
-  letter-spacing:0.5em;
-}
-.instruction-header .deco{
-  display:block;margin-top:4px;
-  font-size:0.7rem;letter-spacing:0.3em;color:#a08870;font-weight:400;
-}
 
 .instruction-body{
   flex:1;
@@ -216,21 +207,11 @@ main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;align
 }
 
 .instruction-footer{
-  margin-top:auto;padding-top:1.2rem;
-  display:flex;justify-content:space-between;align-items:flex-end;
-  border-top:1px solid rgba(60,40,20,0.12);
+  margin-top:auto;padding-top:0.8rem;
+  display:flex;justify-content:flex-end;align-items:center;
 }
 .instruction-footer .mark{
-  font-size:0.75rem;color:#8a7058;letter-spacing:0.1em;
-}
-.instruction-footer .seal-stamp{
-  width:48px;height:48px;
-  background:radial-gradient(circle at 50% 40%, #8b2020 0%, #5a1212 70%);
-  border-radius:4px;opacity:0.7;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.6rem;color:#d4a060;writing-mode:vertical-lr;letter-spacing:0.2em;
-  transform:rotate(-3deg);
-  box-shadow:inset 0 0 8px rgba(0,0,0,0.3);
+  font-size:0.65rem;color:#9a8a78;letter-spacing:0.05em;
 }
 
 /* ========== CONTROLS ========== */
@@ -296,8 +277,8 @@ footer{
 <div class="particle-field" id="particles"></div>
 
 <header>
-  <h1>指 令 生 成 器</h1>
-  <div class="sub">— 食 指 · 都 市 之 令 —</div>
+  <h1>指 令</h1>
+  <div class="sub">食 指 · 都 市 之 令</div>
 </header>
 
 <div class="style-tabs" id="styleTabs">
@@ -327,7 +308,7 @@ footer{
   <div class="counter" id="counter"></div>
 </main>
 
-<footer>「谨遵指令之意」— 指令无需知晓来源，只需践行其意志。</footer>
+<footer>「谨遵指令之意」</footer>
 
 <script>
 // ============================================================
@@ -397,19 +378,7 @@ const CONDITIONS = [
   '不得携带任何武器','需逆时针绕行三周',
 ];
 
-const CONSEQUENCES = [
-  '违者将化为"材料"','违者将录入名录，永世追索',
-  '违者将失去居住之权','违者将受"清道夫"问候',
-  '违者之姓名将从都市中抹去','违者将被逐出后巷，流放郊区',
-  '违者之血将被献于意志','违者将永失食指庇护',
-  '违者将被自记忆中删除','违者将承受七轮深宵之刑',
-];
 
-const CLOSINGS = [
-  '——遵行即安，违者无赦。','——信在人在，信失人亡。',
-  '——意志既降，莫问缘由。','——此令既出，天地共鉴。',
-  '——食指引以为证。','——意志已然织就。',
-];
 
 // ============================================================
 //  SHORT STYLE – 短令 / prescript 风格
@@ -531,25 +500,20 @@ function genStandard(){
   const loc  = pick(LOCATIONS);
   const time = pick(TIMES);
   const cond = pick(CONDITIONS);
-  const cons = pick(CONSEQUENCES);
-  const clos = pick(CLOSINGS);
   const v = Math.random();
 
-  let p1,p2,p3;
+  let p1,p2;
   if(v<0.33){
     p1 = `${o}${act}${loc}，向${per}索取${tgt}。`;
     p2 = `${time}前完成，${cond}。`;
-    p3 = `${cons}。${clos}`;
   } else if(v<0.66){
     p1 = `${o}在${loc}寻找${per}，从其手中取得${tgt}。`;
     p2 = `限${time}，${cond}。`;
-    p3 = `${cons}。${clos}`;
   } else {
     p1 = `${o}将${tgt}${act}至${loc}，交予${per}。`;
     p2 = `须在${time}抵达，${cond}。`;
-    p3 = `${cons}。${clos}`;
   }
-  return `<div class="instruction-body"><p>${p1}</p><p>${p2}</p><p>${p3}</p></div>`;
+  return `<div class="instruction-body"><p>${p1}</p><p>${p2}</p></div>`;
 }
 
 function genShort(){
@@ -570,10 +534,9 @@ function genList(){
     if(!used.has(idx)){ used.add(idx); items.push(LIST_ACTIONS[idx]) }
   }
   const cond = pick(CONDITIONS);
-  const cons = pick(CONSEQUENCES);
   return `<div class="instruction-body list-style">
     ${items.map((t,i)=>`<div class="list-item"><span class="list-num">${i+1}.</span><span>${t}</span></div>`).join('')}
-    <p style="margin-top:0.6rem;text-indent:0;font-size:0.85rem;color:#7a6050;">以上令条须同时执行——${cond}。<br>${cons}。</p>
+    <p style="margin-top:0.6rem;text-indent:0;font-size:0.85rem;color:#7a6050;">以上令条须同时执行——${cond}。</p>
   </div>`;
 }
 
@@ -641,18 +604,13 @@ function renderIndex(style){
 
   setTimeout(()=>{
     instEl.innerHTML = `
-      <div class="instruction-header">
-        食 指 之 令
-        <span class="deco">⋆ 谨遵指令之意 ⋆</span>
-      </div>
       ${html}
       <div class="instruction-footer">
-        <span class="mark">都市历 · 未知年 · 信纸编号 ${String(++genCount).padStart(4,'0')}</span>
-        <div class="seal-stamp">食指</div>
+        <span class="mark">信纸编号 ${String(++genCount).padStart(4,'0')}</span>
       </div>
     `;
     badgeEl.textContent = '— ' + label + ' —';
-    cntEl.textContent = `已降指令 ${genCount} 道 · 六种令式 · 可组合逾万种`;
+    cntEl.textContent = `已降指令 ${genCount} 道`;
     paper.classList.remove('fade-out');
   }, 280);
 }
